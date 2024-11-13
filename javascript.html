@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>JavaScript</h1>
+    </header>
+    <main>
+        <section class="container">
+            <h2>Tính Giai Thừa</h2>
+            <form onsubmit="tinhtoanGiaiThua(event)">
+                <label for="number">Nhập số nguyên không âm:</label>
+                <input type="number" id="number" required>
+                <button type="submit">Tính Giai Thừa</button>
+            </form>
+            <section id="result1"></section>
+        </section>
+
+        <section class="container">
+            <h2>Tính Lũy Thừa</h2>
+            <form onsubmit="tinhtoanLuyThua(event)">
+                <div class="col">
+                    <div class="element">
+                    <label for="base">Nhập cơ số:</label>
+                    <input type="number" id="base" step="any" required></div>
+                    <div class="element">
+                    <label for="exponent">Nhập số mũ:</label>
+                    <input type="number" id="exponent" required></div>
+                </div>
+                <button type="submit">Tính Lũy Thừa</button>
+            </form>
+            <section id ="result2"></section>
+        </section>
+
+        
+    </main>
+<script>
+        function tinhtoanGiaiThua(event) {
+            event.preventDefault();
+            let number = parseInt(document.getElementById('number').value);
+            if (number < 0) {
+                document.getElementById('result1').innerHTML = "Vui lòng nhập một số nguyên không âm.";
+                return;
+            }
+            let factorial = 1;
+            for (let i = 1; i <= number; i++) {
+                factorial *= i;
+            }
+            document.getElementById('result1').innerHTML = `
+                <p>Giai thừa của ${number} bằng: ${factorial}</p>
+            `;
+        }
+
+        function tinhtoanLuyThua(event) {
+            event.preventDefault();
+            let base = parseFloat(document.getElementById('base').value);
+            let exponent = parseInt(document.getElementById('exponent').value);
+            if (isNaN(base) || isNaN(exponent)) {
+                document.getElementById('result2').innerHTML = "Vui lòng nhập cơ số hoặc số mũ hợp lệ.";
+                return;
+            }
+            let power = Math.pow(base, exponent);
+            document.getElementById('result2').innerHTML = `
+                <p>${base} lũy thừa ${exponent} bằng: ${power}</p>
+            `;
+        }
+    </script>
